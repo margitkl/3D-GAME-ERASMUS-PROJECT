@@ -1,0 +1,121 @@
+#container 
+{
+  position: absolute;
+  width: 1200px;
+  height: 800px;
+  border: 2px solid #000000;
+  perspective: 600px;
+  overflow: hidden;
+}
+
+#world {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  transform-style: preserve-3d;
+}
+
+.square {
+  position: absolute;
+
+}
+
+.menu
+{
+  display:none;
+  position:absolute;
+  width: inherit;
+  height: inherit; 
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 1000;
+}
+
+.button
+{
+  position:absolute;
+  width:900px; 
+  height:100px;
+  background-color: rgb(136, 9, 28); 
+  cursor:pointer; 
+  outline: none;
+}
+
+#startGame
+{
+  top:200px;
+  left:150px;
+}
+#rulesButton
+{
+  top:350px;
+  left:150px;
+}
+#instructionsButton
+{
+  top:500px;
+  left:150px;
+}
+#backButtonInstructions
+{
+  top:450px;
+  left:150px;
+}
+
+#backButtonRules
+{
+  top:450px;
+  left:150px;
+}
+.button:hover
+{
+  background-color: #a81111;
+}
+
+p
+{
+  position:absolute;
+  font-size: 60px;
+  top:50%;
+  left:50%;
+  margin: 0px;
+  transform:translate(-50%,-50%);
+  font-family:game;
+
+}
+
+@font-face 
+{
+  font-family: game;
+  src: url("fonts/goth.otf");
+  
+}
+
+#menuStartowe 
+{
+  background-image: url("Patterns/ramka1.jpg");
+}
+#menuRules 
+{
+  background-image: url("Patterns/background1.jpg");
+}
+
+#menuInstructions 
+{
+  background-image: url("Patterns/background2.jpg");
+}
+
+#menuInstructions > p,
+#menuRules > p 
+{
+  color: #f7f7f7;
+
+  text-shadow:
+    -1px -1px 0 rgba(0,0,0,0.8),
+     1px -1px 0 rgba(0,0,0,0.8),
+    -1px  1px 0 rgba(0,0,0,0.8),
+     1px  1px 0 rgba(0,0,0,0.8);
+}
+
