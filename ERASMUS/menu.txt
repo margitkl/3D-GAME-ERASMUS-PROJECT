@@ -1,0 +1,127 @@
+//variables for navigation
+var menu1 = document.getElementById("menu1");
+var menu2 = document.getElementById("menu2");
+var button1 = document.getElementById("button1");
+var button2 = document.getElementById("button2");
+var button3 = document.getElementById("button3");
+var widget1 = document.getElementById("widget1");
+var widget2 = document.getElementById("widget2");
+var widget3 = document.getElementById("widget3");
+var clickSound = new Audio;
+clickSound.src = "Sounds/click.wav";
+var c = [0];
+var k = [0];
+var score = 0;
+var level = 0;
+
+//create navigation
+button1.onclick = function(){
+	//copy of arrays
+	map = makeCopy(mapArray[level]);
+	coins = makeCopy(coinsArray[level]);
+	keys = makeCopy(keysArray[level]);
+	finish = makeCopy(finishArray[level]);
+	start = makeCopy(startArray[level]);
+	
+	//create the world and put the items on the map
+	pawn.x = start[0][0];
+	pawn.y = start[0][1];
+	pawn.z = start[0][2];
+	pawn.rx = start[0][3];
+	pawn.ry = start[0][4];
+	clickSound.play();
+	menu1.style.display = "none";
+	//generation of the world
+	CreateNewWorld(map);
+	CreateSquares(coins,"coin");
+	CreateSquares(keys,"key");
+	CreateSquares(finish,"finish");
+	
+	//lunch the game
+	widget1.style.display = "block";
+	widget2.style.display = "block";
+	widget1.innerHTML = "<p style='font-size:30px'>Coins 0 of " + coins.length + "</p>";
+	widget2.innerHTML = "<p style='font-size:30px'>Keys 0 of " + keys.length + "</p>";
+	widget3.innerHTML = "<p style='font-size:40px'>Please find the key!</p>";
+	TimerGame = setInterval(repeatForever,10);
+	canlock = true;
+}
+
+button2.onclick = function(){
+	clickSound.play();
+	menu1.style.display = "none";
+	menu2.style.display = "block";
+}
+
+button3.onclick = function(){
+	clickSound.play();
+	menu1.style.display = "block";
+	menu2.style.display = "none";
+}
+
+function makeCopy(array){
+	let NewArray = new Array();
+		for (let i = 0; i < array.length; i++){
+			NewArray[i] = new Array();
+			for (let j = 0; j < array[i].length; j++){
+				NewArray[i][j] = array[i][j];
+			}
+		}
+		return NewArray;
+}
+
+function iteration(squares,string,num){
+	for (let i = 0; i < squares.length; i++){
+		let r = (squares[i][0] - pawn.x)**2 +
+				(squares[i][1] - pawn.y)**2 +
+				(squares[i][2] - pawn.z)**2;
+		let r1 = squares[i][6]**2;
+		//console.log(r,r1);
+		if (r < r1) {
+			document.getElementById(string + i).style.display = "none";
+			squares[i][0] = 1000000;
+			squares[i][1] = 1000000;
+			squares[i][2] = 1000000;
+			num[0]++;
+			//console.log("item:",num,"coins:",c[0],"keys:",k[0]);
+			widget1.innerHTML = "<p style='font-size:30px'>Coins " + c[0] + " of " + coins.length + "</p>";
+			widget2.innerHTML = "<p style='font-size:30px'>Keys " + k[0] + " of " + keys.length + "</p>";
+		}
+	}
+}
+
+function finishIteration(){
+	let r = (finish[0][0] - pawn.x)**2 + 
+			(finish[0][1] - pawn.y)**2 +
+			(finish[0][2] - pawn.z)**2;
+	let r1 = finish[0][6]**2;
+	if (r < r1){
+		if (k[0] == 0){
+			console.log("Please find the key");
+		}
+		else{
+			clearWorld();
+			clearInterval(TimerGame);
+			score = score + c[0];
+			c[0] = 0;
+			k[0] = 0;
+			menu1.style.display = "block";
+			document.exitPointerLock();
+			canlock = false;
+			console.log("score is", score);
+			console.log("level is", level);
+			level++;
+			if (level == 2){
+				level = 0;
+				score = 0;
+			}
+		}
+	}
+}
+
+function repeatForever(){
+	update();
+	iteration(coins,"coin",c);
+	iteration(keys,"key",k);
+	finishIteration();
+}

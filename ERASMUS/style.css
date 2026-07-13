@@ -1,11 +1,15 @@
-#container 
-{
+#container {
   position: absolute;
   width: 1200px;
   height: 800px;
   border: 2px solid #000000;
   perspective: 600px;
   overflow: hidden;
+
+    background-image: url("Patterns/hands.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #world {
@@ -20,102 +24,121 @@
 
 }
 
-.menu
-{
-  display:none;
-  position:absolute;
+.menu {
+  display: none;
+  position: absolute;
   width: inherit;
-  height: inherit; 
-    background-size: cover;
+  height: inherit;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   z-index: 1000;
 }
 
-.button
-{
-  position:absolute;
-  width:900px; 
-  height:100px;
-  background-color: rgb(136, 9, 28); 
-  cursor:pointer; 
+.button {
+  position: absolute;
+  width: 900px;
+  height: 100px;
+  background-color: rgb(136, 9, 28);
+  cursor: pointer;
   outline: none;
 }
-
-#startGame
-{
-  top:200px;
-  left:150px;
-}
-#rulesButton
-{
-  top:350px;
-  left:150px;
-}
-#instructionsButton
-{
-  top:500px;
-  left:150px;
-}
-#backButtonInstructions
-{
-  top:450px;
-  left:150px;
+.button:hover {
+  background-color: yellow;
 }
 
-#backButtonRules
-{
-  top:450px;
-  left:150px;
+#startGame {
+  top: 200px;
+  left: 150px;
 }
-.button:hover
-{
+
+#rulesButton {
+  top: 350px;
+  left: 150px;
+}
+
+#instructionsButton {
+  top: 500px;
+  left: 150px;
+}
+
+#backButtonInstructions {
+  top: 450px;
+  left: 150px;
+}
+
+#backButtonRules {
+  top: 450px;
+  left: 150px;
+}
+
+.button:hover {
   background-color: #a81111;
 }
 
-p
-{
-  position:absolute;
+p {
+  position: absolute;
   font-size: 60px;
-  top:50%;
-  left:50%;
+  top: 50%;
+  left: 50%;
   margin: 0px;
-  transform:translate(-50%,-50%);
-  font-family:game;
+  transform: translate(-50%, -50%);
+  font-family: game;
 
 }
 
-@font-face 
-{
+@font-face {
   font-family: game;
   src: url("fonts/goth.otf");
-  
+
 }
 
-#menuStartowe 
-{
+#menuStartowe {
   background-image: url("Patterns/ramka1.jpg");
 }
-#menuRules 
-{
-  background-image: url("Patterns/background1.jpg");
+
+#menuRules {
+  background-image: url("Patterns/flores.jpg");
 }
 
-#menuInstructions 
-{
+#menuInstructions {
   background-image: url("Patterns/background2.jpg");
 }
 
-#menuInstructions > p,
-#menuRules > p 
-{
+#menuInstructions>p,
+#menuRules>p {
   color: #f7f7f7;
 
   text-shadow:
-    -1px -1px 0 rgba(0,0,0,0.8),
-     1px -1px 0 rgba(0,0,0,0.8),
-    -1px  1px 0 rgba(0,0,0,0.8),
-     1px  1px 0 rgba(0,0,0,0.8);
+    -1px -1px 0 rgba(0, 0, 0, 0.8),
+    1px -1px 0 rgba(0, 0, 0, 0.8),
+    -1px 1px 0 rgba(0, 0, 0, 0.8),
+    1px 1px 0 rgba(0, 0, 0, 0.8);
 }
 
+.widget{
+    position:absolute;
+    background-color: #FFF;
+    opacity: 0.8;
+}
+
+#widget1{
+    left:0px;
+    top:0px;
+    width: 400px;
+    height: 100px;
+}
+#widget2{
+    right:0px;
+    top:0px;
+    width: 400px;
+    height: 100px;
+}
+#widget3{
+    right:0px;
+    bottom:0px;
+    width:1200px;
+    height: 100px;
+
+}
